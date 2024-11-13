@@ -1,0 +1,8 @@
+transformers
+datasets
+evaluate
+tensorflow
+ipywidgets
+scikit-learn
+numpy
+pandas
