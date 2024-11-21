@@ -5,6 +5,10 @@ from vertexai.generative_models import GenerativeModel, SafetySetting, Part
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -15,9 +19,16 @@ async def root():
 
 @app.get("/generate")
 async def multiturn_generate_content(RequestContext: str):
-    vertexai.init(project="colab-441716", location="asia-southeast1")
+    project_id = os.getenv("PROJECT_ID")
+    location = os.getenv("LOCATION")
+    model_name = os.getenv("AI_MODEL")
+    instructions = os.getenv("SYSTEM_INSTRUCTION")
+    if not all([project_id, location, model_name, instructions]):
+        return JSONResponse(content={"error": "Environment variables not set correctly"}, status_code=500)
+
+    vertexai.init(project=project_id, location=location)
     model = GenerativeModel(
-        "gemini-1.5-flash-002",
+        model_name=model_name,
         system_instruction=[instructions]
     )
     chat = model.start_chat()
@@ -47,8 +58,6 @@ async def multiturn_generate_content(RequestContext: str):
             content={"error": "Failed to parse JSON response", "details": str(e)},
             status_code=500
         )
-
-instructions = """Anda adalah agen AI yang bertugas membuat 5 pertanyaan berbasis pilihan ganda (multiple-choice question) berdasarkan materi atau konteks yang diberikan oleh pengguna. Respons Anda harus terstruktur dalam format JSON dengan elemen-elemen berikut: 1. **question**: Pertanyaan yang relevan dengan materi atau konteks. 2. **options**: Sebuah array berisi empat opsi jawaban yang unik (A, B, C, dan D), dengan satu jawaban yang benar. 3. **correct_answer**: Huruf yang menunjukkan jawaban yang benar (A, B, C, atau D). 4. **explanation**: Penjelasan singkat mengapa jawaban tersebut benar. Contoh format JSON: ```json { \"question\": \"Apa itu machine learning?\", \"options\": [ \"A. Proses mengkodekan logika ke dalam perangkat lunak secara manual\", \"B. Penggunaan data untuk melatih model agar dapat membuat prediksi atau keputusan\", \"C. Sistem yang hanya mengandalkan aturan yang telah ditentukan sebelumnya\", \"D. Teknologi untuk menyimpan data dalam basis data\" ], \"correct_answer\": \"B\", \"explanation\": \"Machine learning adalah pendekatan di mana sistem menggunakan data untuk melatih model agar dapat memprediksi atau membuat keputusan tanpa diprogram secara eksplisit.\" }"""
 
 generation_config = {
     "max_output_tokens": 8192,

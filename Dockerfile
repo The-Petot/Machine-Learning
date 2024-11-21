@@ -39,6 +39,10 @@ EXPOSE 8000
 
 # Set environment variable
 ENV PYTHONUNBUFFERED=1
+ENV SYSTEM_INSTRUCTION = 
+ENV LOCATION = 
+ENV PROJECT_ID = 
+ENV AI_MODEL = 
 
 # Run startup script
 ENTRYPOINT ["./start.sh"]
