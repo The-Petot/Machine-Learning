@@ -100,14 +100,14 @@ This repository contains a FastAPI-based application that generates multiple-cho
 ## Endpoints
 
 - **GET /**: Returns a message indicating the API is running.
-- **GET /generate**: Generates multiple-choice questions based on the provided context.
+- **POST /generate**: Generates multiple-choice questions based on the provided context.
 
 ## Example
 
-To generate questions, send a GET request to `/generate` with a query parameter `RequestContext` containing the context for the questions.
+To generate questions, send a POST request to `/generate` with a JSON body containing the context for the questions.
 
 ```sh
-curl -X GET "http://localhost:8000/generate?RequestContext=Your+context+here"
+curl -X POST "http://localhost:8000/generate" -H "Content-Type: application/json" -d '{"text": "Your context here"}'
 ```
 
 ## License

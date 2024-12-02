@@ -12,13 +12,20 @@ load_dotenv()
 
 app = FastAPI()
 
+
 @app.get("/")
 async def root():
     return {"message": " Question Generator API UP & RUNNING!"}
 
 
-@app.get("/generate")
-async def multiturn_generate_content(RequestContext: str):
+class GenerateRequest(BaseModel):
+    text: str
+
+@app.post("/generate")
+async def multiturn_generate_content(request: GenerateRequest):
+    if not request.text:
+        return JSONResponse(content={"error": "text not provided"}, status_code=400)
+
     project_id = os.getenv("PROJECT_ID")
     location = os.getenv("LOCATION")
     model_name = os.getenv("AI_MODEL")
@@ -33,7 +40,7 @@ async def multiturn_generate_content(RequestContext: str):
     )
     chat = model.start_chat()
     response = chat.send_message(
-        RequestContext,
+        request.text,
         generation_config=generation_config,
         safety_settings=safety_settings
     )
@@ -48,7 +55,6 @@ async def multiturn_generate_content(RequestContext: str):
     
     try:
         parsed_json = json.loads(json_str)
-        # Return formatted JSON response
         return JSONResponse(
             content=parsed_json,
             media_type="application/json"
