@@ -13,10 +13,10 @@ This repository contains a Jupyter Notebook for generating questions using the S
 |   Malika Putri Rahmawati    |  M318B4KX2392   |  Machine Learning |
 
 ## Question Answer Generate
-This feature helps you create multiple-choice questions from a given text and provides the correct answers as the answer key. Simply input your text, and it will generate well-structured questions along with the corresponding answer key for easy reference.
+This feature helps you create multiple-choice questions from a given text and provides the correct answers as the answer key. Simply input your text, and it will generate well-structured questions along with the corresponding answer key.
 
 ## Summarization Generate
-This feature takes lengthy texts and condenses them into concise summaries designed to help students learn more efficiently. By focusing on the core ideas, it makes studying easier and more effective.
+This feature takes lengthy texts and condenses them into concise summaries designed to help students learn more efficiently. It makes studying easier and more effective.
 
 ## Tech Stacks
 ![stacks](https://github.com/user-attachments/assets/45339587-e6be-45d7-b030-b434e11e8aa1)
