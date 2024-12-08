@@ -9,8 +9,8 @@ This repository contains a Jupyter Notebook for generating questions using the S
 |          Nama         | Bangkit-ID |       Path       |
 |:---------------------:|:----------:|:----------------:|
 |   Yosep Firano La Ngari  |   M286B4KY4545  | Machine Learning |
-|  Dhimas Pramudya Tridharma  |  M318B4KX2392    | Machine Learning |
-|   Malika Putri Rahmawati    |  C0121288  |  Machine Learning |
+|  Dhimas Pramudya Tridharma  |  M269B4KY1098   | Machine Learning |
+|   Malika Putri Rahmawati    |  M318B4KX2392   |  Machine Learning |
 
 ## Table of Contents
 
