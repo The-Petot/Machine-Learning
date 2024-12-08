@@ -5,7 +5,7 @@
 
 This repository contains a Jupyter Notebook for generating questions using the SQuAD dataset and Hugging Face's Transformers library. The notebook demonstrates how to preprocess the dataset, train a model, and evaluate its performance.
 
-## Our team 
+## Our Team Machine Learning
 |          Nama         | Bangkit-ID |       Path       |
 |:---------------------:|:----------:|:----------------:|
 |   Yosep Firano La Ngari  |   M286B4KY4545  | Machine Learning |
