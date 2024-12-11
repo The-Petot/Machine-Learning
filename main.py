@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
 import time
+from google.cloud import pubsub_v1
 
 load_dotenv()
 
@@ -19,6 +20,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_path)
 
 class SummarizeRequest(BaseModel):
     text: str
+    taskId: str
 
 @app.get("/")
 async def root():
@@ -30,6 +32,19 @@ async def summarize_content(request: SummarizeRequest):
     
     if not request.text:
         return JSONResponse(content={"error": "Text not provided"}, status_code=400)
+    if not request.taskId:
+        return JSONResponse(content={"error": "TaskId not provided"}, status_code=400)
+    
+    topic = os.getenv("PUBSUB_TOPIC")
+    project_id = os.getenv("PROJECT_ID")
+    if not all([topic, project_id]):
+        return JSONResponse(
+            content={"error": "Environment variables not set correctly"},
+            status_code=500,
+        )
+    
+    publisher = pubsub_v1.PublisherClient()
+    topic_name = publisher.topic_path(project_id, topic)
 
     start_time = time.time()
     
@@ -39,6 +54,17 @@ async def summarize_content(request: SummarizeRequest):
     
     processing_time = time.time() - start_time
     
+    # Publish the result to Pub/Sub
+    message = {
+        "taskId": request.taskId,
+        "taskType": "summary",
+        "summary": summary,
+        "processing_time": processing_time
+    }
+    message = json.dumps(message)
+    message_bytes = message.encode("utf-8")
+    publisher.publish(topic_name, data=message_bytes)
+
     return JSONResponse(
         content={
             "summary": summary,
