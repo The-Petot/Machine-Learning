@@ -1,5 +1,5 @@
 ServiceAccount.json
-env/
+*env/
 .env
 summarization_model/
 __pycache__/
