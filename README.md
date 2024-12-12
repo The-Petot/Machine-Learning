@@ -36,10 +36,6 @@ pip install -r requirements.txt
 ### Usage
 Open the Jupyter Notebook and follow the steps to preprocess the dataset, train the model, and evaluate its performance.
 
-```bash
-jupyter notebook QUESTIONANSWERGENERATE.ipynb
-```
-
 ## Summarization Generate
 This feature takes lengthy texts and condenses them into concise summaries designed to help students learn more efficiently. It makes studying easier and more effective.
 
