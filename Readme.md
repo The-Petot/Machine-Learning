@@ -1,12 +1,13 @@
-# Question Generator API
+# Text Summarization API
 
-This repository contains a FastAPI-based application that generates multiple-choice questions based on provided context using Google's Vertex AI Generative Models.
+This repository contains a FastAPI-based application that provides text summarization services using a pre-trained T5 model.
 
 ## Prerequisites
 
 - Docker
-- Google Cloud SDK
-- Service Account JSON file with appropriate permissions
+- Python 3.x
+- TensorFlow
+- Transformers Library
 
 ## Installation
 
@@ -81,34 +82,30 @@ This repository contains a FastAPI-based application that generates multiple-cho
     websockets==14.1
     ```
 
+3. **Install the required dependencies:**
+    ```sh
+    pip install -r requirements.txt
+    ```
+
 ## Usage
 
-1. **Build the Docker image:**
+1. **Run the FastAPI application:**
     ```sh
-    docker build -t question-generator-api .
+    uvicorn main:app --reload
     ```
 
-2. **Run the Docker container:**
-    ```sh
-    docker run -p 8000:8000 -v /path/to/ServiceAccount.json:/app/ServiceAccount.json question-generator-api
-    ```
-
-3. **Access the API:**
-    - Open your browser and navigate to `http://localhost:8000`
-    - Use the `/generate` endpoint to generate questions.
+2. **Access the API:**
+    - Open a browser and navigate to `http://localhost:8000`
+    - Use the `/summarize` endpoint to generate text summaries.
 
 ## Endpoints
 
-- **GET /**: Returns a message indicating the API is running.
-- **GET /generate**: Generates multiple-choice questions based on the provided context.
+- **GET /**: Returns a message indicating that the API is running.
+- **POST /summarize**: Summarizes the provided text.
 
 ## Example
 
-To generate questions, send a GET request to `/generate` with a query parameter `RequestContext` containing the context for the questions.
-
-```sh
-curl -X GET "http://localhost:8000/generate?RequestContext=Your+context+here"
-```
+To summarize text, send a POST request to `/summarize` with a JSON payload containing the `text` field.
 
 ## License
 
