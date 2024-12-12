@@ -13,8 +13,8 @@ This repository contains a FastAPI-based application that provides text summariz
 
 1. **Clone the repository:**
     ```sh
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone [<repository-url>](https://github.com/The-Petot/Machine-Learning.git) -b feat/sumarize
+    cd Machine-Learning
     ```
 
 2. **Create a `requirements.txt` file with the following content:**
