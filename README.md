@@ -22,7 +22,7 @@ This repository contains various machine learning projects, including a Jupyter 
 ## Question Answer Generate
 This feature helps you create multiple-choice questions from a given text and provides the correct answers as the answer key. Simply input your text, and it will generate well-structured questions.
 
-[Link to Question Answer Generate Branch](https://github.com/The-Petot/Machine-Learning/tree/question-answer-generate)
+[Link to Question Answer Generate Branch](https://github.com/The-Petot/Machine-Learning/tree/feat/questions-answer?tab=readme-ov-file)
 
 ### Installation
 To get started with the Question Answer Generate feature, clone the repository and install the required packages:
@@ -43,7 +43,7 @@ jupyter notebook QUESTIONANSWERGENERATE.ipynb
 ## Summarization Generate
 This feature takes lengthy texts and condenses them into concise summaries designed to help students learn more efficiently. It makes studying easier and more effective.
 
-[Link to Summarization Generate Branch](https://github.com/The-Petot/Machine-Learning/tree/summarization-generate)
+[Link to Summarization Generate Branch](https://github.com/The-Petot/Machine-Learning/tree/feat/sumarize?tab=readme-ov-file)
 
 ## Tech Stacks
 ![stacks](https://github.com/user-attachments/assets/45339587-e6be-45d7-b030-b434e11e8aa1)
